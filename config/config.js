@@ -17,7 +17,7 @@ var config = {
     app: {
       name: 'opendoor-practice'
     },
-    port: 3000,
+    port: 5000,
     db: 'mongodb://lli:sa@ds045734.mongolab.com:45734/opendoor-demo'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'opendoor-practice'
     },
-    port: 3000,
+    port: 5000,
     db: 'mongodb://lli:sa@ds045734.mongolab.com:45734/opendoor-demo'
   }
 };
