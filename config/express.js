@@ -38,7 +38,7 @@ module.exports = function(app, config) {
     next(err);
   });
   
-  if(app.get('env') === 'development'){
+
     app.use(function (err, req, res, next) {
       res.status(err.status || 500);
       res.render('error', {
@@ -47,7 +47,6 @@ module.exports = function(app, config) {
         title: 'error'
       });
     });
-  }
 
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
