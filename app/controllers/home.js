@@ -26,23 +26,39 @@ var getSearchParam = function(req) {
   var maxBath = req.query.max_bath;
 
   var param = [];
-  if(minPrice){
-    param.push({'properties.price': { $gt: minPrice}});
+  if(minPrice == maxPrice){
+    param.push({'properties.price':maxPrice});
+  } else {
+    if(minPrice){
+      param.push({'properties.price': { $gte: minPrice}});
+    }
+    if(maxPrice){
+      param.push({'properties.price': { $lte: maxPrice}});
+    }
   }
-  if(maxPrice){
-    param.push({'properties.price': { $lt: maxPrice}});
+  if(minBed == maxBed){
+    param.push({'properties.bedrooms':maxBed});
+  } else {
+    if(minBed){
+      param.push({'properties.bedrooms': { $gte: minBed}});
+    }
+    if(maxBed){
+      param.push({'properties.bedrooms': { $lte: maxBed}});
+    }
   }
-  if(minBed){
-    param.push({'properties.bedrooms': { $gt: minBed}});
+  if(minBath == maxBath){
+    param.push({'properties.bathrooms':maxBath});
+  } else {
+    if(minBath){
+      param.push({'properties.bathrooms': { $gte: minBath}});
+    }
+    if(maxBath){
+      param.push({'properties.bathrooms': { $lte: maxBath}});
+    }
   }
-  if(maxBed){
-    param.push({'properties.bedrooms': { $lt: maxBed}});
-  }
-  if(minBath){
-    param.push({'properties.bathrooms': { $gt: minBath}});
-  }
-  if(maxBath){
-    param.push({'properties.bathrooms': { $lt: maxBath}});
+
+  if(param.length > 0){
+    param = { $and:param};
   }
   return param;
 }
